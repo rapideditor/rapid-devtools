@@ -1,17 +1,18 @@
 {
+    "manifest_version": 3,
     "name": "Rapid",
     "version": "0.1",
     "description": "Chrome DevTools Extension for Rapid",
+    "action": {
+        "default_icon": "rapid_favicon.svg"
+    },
     "devtools_page": "devtools.html",
     "background": {
-        "scripts": [
-            "background.js"
-        ]
+        "service_worker": "background.js",
+        "type": "module"
     },
-    "permissions": [
-        "tabs",
-        "http://*/*",
-        "https://*/*"
-    ],
-    "manifest_version": 2
+    "permissions": ["scripting"],
+    "host_permissions": [
+        "*://*/*"
+    ]
 }
