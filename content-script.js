@@ -1,4 +1,9 @@
-
+// This script gets injected into any opened page
+// whose URL matches the pattern defined in the manifest
+// (see "content_script" key).
+// Several foreground scripts can be declared
+// and injected into the same or different pages.
+console.log("This prints to the console of the page (injected only if the page url matched)")
 // var s = document.createElement('script');
 // s.src = chrome.extension.getURL('content.js');
 // (document.head||document.documentElement).appendChild(s);
@@ -16,7 +21,6 @@ btn.addEventListener("click", () => {
 });
 
 /**
- * Permite:
  * 1. Send messages/data to devtools panel
  * 2. Receive messages/data from the panel
  */
@@ -31,3 +35,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   sendResponse({ status: "ok" });
   console.log("message from panel", message);
 });
+
+
+

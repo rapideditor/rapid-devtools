@@ -1,5 +1,4 @@
 // Chrome automatically creates a background.html page for this to execute.
-// This can access the inspected page via executeScript
 
 chrome.runtime.onConnect.addListener(function (port) {
   var extensionListener = function (message, sender, sendResponse) {
