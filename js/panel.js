@@ -7,7 +7,8 @@
 document.getElementById("send").addEventListener("click", (e) => {
     console.log("click panel");
 
-    sendObjectToInspectedPage({ content: "message to content-script" });
+    // chrome.devtools.inspectedWindow.eval(console.log("test"));
+    sendObjectToInspectedPage({action: "script", content: "../content-script.js"});
   });
 
 

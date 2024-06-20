@@ -12,30 +12,11 @@ s.onload = function() {
     s.parentNode.removeChild(s);
 };
 
-const btn = document.createElement("btn");
-btn.innerHTML = "click send panel";
-(document.body || document.documentElement).appendChild(btn);
 
-btn.addEventListener("click", () => {
-  console.log('click');
-  sendObjectToDevTools({ content: "Changed by page" });
+document.querySelector('button').addEventListener('click', function() {
+  sendObjectToDevTools({content: "Changed by page"});
 });
-
-/**
- * 1. Send messages/data to devtools panel
- * 2. Receive messages/data from the panel
- */
-
-// 1
 function sendObjectToDevTools(message) {
   // The callback here can be used to execute something on receipt
-  chrome.runtime.sendMessage(message, function (message) {});
+  chrome.extension.sendMessage(message, function(message){});
 }
-// 2
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  sendResponse({ status: "ok" });
-  console.log("message from panel", message);
-});
-
-
-
