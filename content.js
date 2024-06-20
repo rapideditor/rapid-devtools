@@ -1,23 +1,21 @@
-console.log(window.rapidContext)
-console.log("In content.js")
+console.log("content.js loaded");
 
-(function createChannel() {
-  //Create a port with background page for continous message communication
-  var port = chrome.extension.connect({
-      name: "Sample Communication" //Given a Name
-  });
+const btn = document.createElement("btn");
+btn.innerHTML = "click send panel";
+(document.body || document.documentElement).appendChild(btn);
 
-  // Listen to messages from the background page
-  port.onMessage.addListener(function (message) {
-    document.querySelector('#insertmessagebutton').innerHTML = message.content;
-    // port.postMessage(message);
-  });
+btn.addEventListener("click", () => {
+  console.log('click');
+  sendObjectToDevTools({ content: "Changed by page" });
+});
 
-}());
-
-// This sends an object to the background page
-// where it can be relayed to the inspected page
-function sendObjectToInspectedPage(message) {
-  message.tabId = chrome.devtools.inspectedWindow.tabId;
-  chrome.extension.sendMessage(message);
+// 1 Send messages/data to devtools panel
+function sendObjectToDevTools(message) {
+  // The callback here can be used to execute something on receipt
+  chrome.runtime.sendMessage(message, function (message) {});
 }
+// 2 Receive messages/data from the panel
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  sendResponse({ status: "ok" });
+  console.log("message from panel", message);
+});
