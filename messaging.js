@@ -8,6 +8,12 @@
 //   tabId: [Automatically added]
 // }
 
+var s = document.createElement('script');
+s.src = chrome.runtime.getURL('script.js');
+s.onload = function() { this.remove(); };
+// see also "Dynamic values in the injected code" section in this answer
+(document.head || document.documentElement).appendChild(s);
+
 (function createChannel() {
     //Create a port with background page for continous message communication
     var port = chrome.extension.connect({
@@ -22,7 +28,7 @@
 
 }());
 
-// This sends an object to the background page 
+// This sends an object to the background page
 // where it can be relayed to the inspected page
 function sendObjectToInspectedPage(message) {
     message.tabId = chrome.devtools.inspectedWindow.tabId;

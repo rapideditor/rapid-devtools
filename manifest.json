@@ -13,5 +13,8 @@
         "http://*/*",
         "https://*/*"
     ],
+    "web_accessible_resources": [
+        ["script.js"]
+    ],
     "manifest_version": 2
 }
