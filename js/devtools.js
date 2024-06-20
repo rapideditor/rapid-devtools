@@ -5,8 +5,8 @@
 
 // Create a tab in the devtools area
 chrome.devtools.panels.create("Rapid",              //title
-                              "rapid_favicon.png",  //iconPath
-                              "panel.html",         //pagePath
+                              "../assets/rapid_favicon.png",  //iconPath
+                              "../html/panel.html",         //pagePath
                               function(panel) {});
 
 var backgroundPageConnection = chrome.runtime.connect({

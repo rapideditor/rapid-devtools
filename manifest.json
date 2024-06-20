@@ -6,11 +6,12 @@
     "version": "0.1",
     //SVG files are not supported
     "icons": {
-        "16": "rapid_favicon.png"
+        "16": "assets/rapid_favicon.png",
+        "48": "assets/rapid_icon_48.png"
     },
     "devtools_page": "html/devtools.html",
     "background": {
-        "service_worker": "background.js",
+        "service_worker": "service-worker.js",
         "type": "module"
     },
     "permissions": ["scripting"],
@@ -27,7 +28,7 @@
     ],
     "web_accessible_resources": [
         {
-            "resources": ["script.js"],
+            "resources": ["content.js"],
             "matches": ["<all_urls>"]
         }
     ]

@@ -3,7 +3,7 @@
 
 chrome.runtime.onConnect.addListener(function (port) {
   var extensionListener = function (message, sender, sendResponse) {
-    if (message.tabId) {
+    if (message.tabId && message.content) {
       //Evaluate script in inspectedPage
       //Pass message to inspectedPage
       // console.log("to current tab");
@@ -29,6 +29,7 @@ chrome.runtime.onConnect.addListener(function (port) {
   //     port.postMessage(message);
   // });
 });
+
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   return true;
 });
