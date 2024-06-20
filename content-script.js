@@ -4,12 +4,13 @@
 // Several foreground scripts can be declared
 // and injected into the same or different pages.
 console.log("This prints to the console of the page (injected only if the page url matched)")
-// var s = document.createElement('script');
-// s.src = chrome.extension.getURL('content.js');
-// (document.head||document.documentElement).appendChild(s);
-// s.onload = function() {
-//     s.parentNode.removeChild(s);
-// };
+
+var s = document.createElement('script');
+s.src = chrome.runtime.getURL('content.js');
+(document.head||document.documentElement).appendChild(s);
+s.onload = function() {
+    s.parentNode.removeChild(s);
+};
 
 const btn = document.createElement("btn");
 btn.innerHTML = "click send panel";

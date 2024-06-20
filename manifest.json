@@ -9,7 +9,7 @@
         "16": "assets/rapid_favicon.png",
         "48": "assets/rapid_icon_48.png"
     },
-    "devtools_page": "html/devtools.html",
+    "devtools_page": "frontend/devtools.html",
     "background": {
         "service_worker": "service-worker.js",
         "type": "module"
