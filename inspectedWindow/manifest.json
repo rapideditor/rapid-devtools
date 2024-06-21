@@ -1,0 +1,15 @@
+{
+    "name": "Rapid DevTools",
+    "description": "Uses devtools.inspectedWindow to collect and use data on the resouces used in a web page.",
+    "version": "1.0",
+    "manifest_version": 3,
+    "devtools_page": "devtools.html",
+    "host_permissions": [
+      "http://127.0.0.1:8080/*",
+      "https://rapideditor.org/*"
+    ],
+    "icons": {
+      "16": "assets/rapid_favicon.png",
+      "48": "assets/rapid_icon_48.png"
+    }
+  }
