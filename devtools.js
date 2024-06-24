@@ -27,7 +27,6 @@ chrome.devtools.panels.elements.createSidebarPane(
       sidebar.setExpression('(' + page_getProperties.toString() + ')()');
     }
     updateElementProperties();
-    chrome.devtools.panels.elements.onSelectionChanged.addListener(
-    );
+    chrome.devtools.panels.elements.onSelectionChanged.addListener(page_getProperties);
   }
 );

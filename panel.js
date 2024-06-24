@@ -10,7 +10,7 @@ function fetchRapidVersion() {
       if (!isException) {
         displayRapidVersion(result);
       } else {
-        console.error("Error evaluating expression:", isException);
+        console.error("Error fetching Rapid version:", isException);
       }
     }
   );
