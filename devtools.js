@@ -14,19 +14,20 @@ chrome.devtools.panels.create(
   'Rapid',
   'assets/rapid_favicon.png',
   'panel.html',
-  () => {}
+  function (panel) {
+    console.log("Panel created")
+  }
 );
 
 //Create sidebar
 chrome.devtools.panels.elements.createSidebarPane(
   'Rapid Properties',
-  (sidebar) => {
+  function (sidebar) {
     function updateElementProperties() {
       sidebar.setExpression('(' + page_getProperties.toString() + ')()');
     }
     updateElementProperties();
     chrome.devtools.panels.elements.onSelectionChanged.addListener(
-      updateElementProperties
     );
   }
 );
