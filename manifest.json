@@ -10,6 +10,18 @@
       "https://rapideditor.org/*",
       "*://*/*"
     ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "web_accessible_resources": [
+      {
+          "resources": [
+              "panel.html",
+              "sidebar.html"
+          ],
+          "matches": ["<all_urls>"]
+      }
+    ],
     "icons": {
       "16": "assets/rapid_favicon.png",
       "48": "assets/rapid_icon_48.png"

@@ -58,3 +58,14 @@ fetchRapidVersion();
 
 // Optional: Add listener for selection changes in the Elements panel
 chrome.devtools.panels.elements.onSelectionChanged.addListener(fetchRapidVersion);
+
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+  if (message.action === "receiveElementProperties") {
+      const elementProperties = message.data;
+      // Do something with the element properties, e.g., update the UI
+      console.log("Received element properties in panel.js:", elementProperties);
+
+      // Example: Update the UI
+      document.getElementById('elementProperties').textContent = JSON.stringify(elementProperties, null, 2);
+  }
+});

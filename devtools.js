@@ -23,7 +23,13 @@ chrome.devtools.panels.elements.createSidebarPane(
   'Rapid Properties',
   function (sidebar) {
     function updateElementProperties() {
-      sidebar.setExpression('(' + page_getHistory.toString() + ')()');
+      sidebar.setExpression('(' + page_getHistory.toString() + ')()', 'Element Properties', function(result) {
+        // Check if there is a result
+        if (result) {
+            // Send the result to the background script
+            chrome.runtime.sendMessage({ action: "sendElementProperties", data: result });
+        }
+      });
     }
     updateElementProperties();
     chrome.devtools.panels.elements.onSelectionChanged.addListener(
