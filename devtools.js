@@ -1,6 +1,5 @@
-
-const page_getProperties = function () {
-  let data = window.jQuery && $0 ? jQuery.data($0) : {};
+const page_getHistory = function () {
+  let data = window.rapidContext ? window.rapidContext.systems.editor._history : {};
   // Make a shallow copy with a null prototype, so that sidebar does not
   // expose prototype.
   let props = Object.getOwnPropertyNames(data);
@@ -24,9 +23,11 @@ chrome.devtools.panels.elements.createSidebarPane(
   'Rapid Properties',
   function (sidebar) {
     function updateElementProperties() {
-      sidebar.setExpression('(' + page_getProperties.toString() + ')()');
+      sidebar.setExpression('(' + page_getHistory.toString() + ')()');
     }
     updateElementProperties();
-    chrome.devtools.panels.elements.onSelectionChanged.addListener(page_getProperties);
+    chrome.devtools.panels.elements.onSelectionChanged.addListener(
+      updateElementProperties
+    );
   }
 );

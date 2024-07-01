@@ -9,6 +9,24 @@ function fetchRapidVersion() {
     function(result, isException) {
       if (!isException) {
         displayRapidVersion(result);
+        fetchRapidHistory(result)
+      } else {
+        console.error("Error fetching Rapid version:", isException);
+      }
+    }
+  );
+}
+
+function fetchRapidHistory(version) {
+  chrome.devtools.inspectedWindow.eval(
+    `
+    (function() {
+      return window.rapidContext.systems.editor._history;
+    })();
+    `,
+    function(result, isException) {
+      if (!isException) {
+        displayRapidHistory(version, result);
       } else {
         console.error("Error fetching Rapid version:", isException);
       }
@@ -17,9 +35,22 @@ function fetchRapidVersion() {
 }
 
 // Function to display the version in panel's UI
-function displayRapidVersion(rapidVersionValue) {
+function displayRapidVersion(version) {
   const rapidVersionElement = document.getElementById('rapidVersion');
-  rapidVersionElement.textContent = rapidVersionValue !== undefined ? `Rapid Version Detected: ${rapidVersionValue}` : "Rapid is not running";
+  rapidVersionElement.textContent = version !== undefined ? `Rapid Version Detected: ${version}` : "Rapid is not running";
+}
+
+// Function to display history in panel's UI
+function displayRapidHistory(version, history) {
+  const rapidHistoryElement = document.getElementById('rapidHistory');
+  rapidHistoryElement.textContent = "Rapid History:";
+
+  for (let i = 1; i < history.length; i++) {
+    const ele = history[i]
+    let ol = document.createElement("ol");
+    ol.innerText = `${i}) ${ele.annotation}`;
+    rapidHistoryElement.appendChild(ol);
+  }
 }
 
 // Initial fetch of 'rapidVersion' when panel is opened
