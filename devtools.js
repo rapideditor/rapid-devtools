@@ -29,13 +29,8 @@ chrome.devtools.panels.elements.createSidebarPane(
     function updateElementProperties() {
       sidebar.setExpression(
         '(' + page_getHistory.toString() + ')()',
-        'History',
-        function(result) {
-          if (result) { // Send the result to the background script
-              chrome.runtime.sendMessage({ action: "sendElementProperties", data: result });
-          }
-        }
-      );
+        'History'
+      )
     }
 
     updateElementProperties();

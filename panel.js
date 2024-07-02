@@ -9,7 +9,6 @@ function fetchRapidVersion() {
     function(result, isException) {
       if (!isException) {
         displayRapidVersion(result);
-        fetchRapidHistory(result)
       } else {
         console.error("Error fetching Rapid version:", isException);
       }
@@ -27,6 +26,7 @@ function fetchRapidHistory(version) {
     function(result, isException) {
       if (!isException) {
         displayRapidHistory(version, result);
+
       } else {
         console.error("Error fetching Rapid version:", isException);
       }
@@ -37,7 +37,13 @@ function fetchRapidHistory(version) {
 // Function to display the version in panel's UI
 function displayRapidVersion(version) {
   const rapidVersionElement = document.getElementById('rapidVersion');
-  rapidVersionElement.textContent = version !== undefined ? `Rapid Version Detected: ${version}` : "Rapid is not running";
+  if (version !== undefined) {
+    rapidVersionElement.textContent = `Rapid Version Detected: ${version}`;
+    fetchRapidHistory(version);
+  } else {
+    rapidVersionElement.textContent = "Rapid is not running"
+  }
+  // rapidVersionElement.textContent = version !== undefined ? `Rapid Version Detected: ${version}` : "Rapid is not running";
 }
 
 // Function to display history in panel's UI
@@ -56,16 +62,5 @@ function displayRapidHistory(version, history) {
 // Initial fetch of 'rapidVersion' when panel is opened
 fetchRapidVersion();
 
-// Optional: Add listener for selection changes in the Elements panel
+//Update on selection change
 chrome.devtools.panels.elements.onSelectionChanged.addListener(fetchRapidVersion);
-
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-  if (message.action === "receiveElementProperties") {
-      const elementProperties = message.data;
-      // Do something with the element properties, e.g., update the UI
-      console.log("Received element properties in panel.js:", elementProperties);
-
-      // Example: Update the UI
-      document.getElementById('elementProperties').textContent = JSON.stringify(elementProperties, null, 2);
-  }
-});
