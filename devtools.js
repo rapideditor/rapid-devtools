@@ -38,5 +38,7 @@ chrome.devtools.panels.elements.createSidebarPane(
     chrome.devtools.panels.elements.onSelectionChanged.addListener(
       updateElementProperties
     );
+    window.addEventListener("click", updateElementProperties(), '*');
+    window.addEventListener("keypress", updateElementProperties(), '*');
   }
 );
