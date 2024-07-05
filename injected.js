@@ -11,22 +11,28 @@ const updateDifferences = () => {
   }
 }
 
+const historyUpdate = () => {
+  history = window.rapidContext.systems.editor.history.slice()
+}
+
 window.postMessage({rapid: {
   version,
   history,
   diff
 }}, '*');
-// const handleChange = (e) => {
-//   history = window.rapidContext.systems.editor.history;
-//   updateDifferences();
 
-//   window.postMessage({rapid: {
-//     version,
-//     history,
-//     diff
-//   }}, '*');
+const handleChange = (e) => {
+  historyUpdate();
+  updateDifferences();
 
-// }
+  window.postMessage({rapid: {
+    version,
+    history,
+    diff
+  }}, '*');
 
-// window.addEventListener("click", handleChange(), '*');
-// window.addEventListener("keypress", handleChange(), '*');
+}
+
+window.addEventListener("click", handleChange(), '*');
+window.addEventListener("keypress", handleChange(), '*');
+

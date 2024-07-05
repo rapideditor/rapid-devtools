@@ -25,6 +25,7 @@ chrome.runtime.onConnect.addListener(function(port) {
   // Listen to messages sent from the DevTools page
   port.onMessage.addListener(function(request) {
     console.log('incoming message from dev tools page');
+    console.log(request)
 
     // Register initial connection
     if (request.name == 'init') {
@@ -39,3 +40,10 @@ chrome.runtime.onConnect.addListener(function(port) {
   });
 
 });
+
+//Service workers do not persist
+//Bug exploit to keep service worker alive indefintiely
+//https://stackoverflow.com/questions/66618136/persistent-service-worker-in-chrome-extension
+const keepAlive = () => setInterval(chrome.runtime.getPlatformInfo, 20e3);
+chrome.runtime.onStartup.addListener(keepAlive);
+keepAlive();
