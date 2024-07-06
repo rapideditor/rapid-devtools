@@ -1,0 +1,26 @@
+body {
+  background: rgba(25, 25, 25, 0.9);
+  color: whitesmoke;
+  font-family: monospace;
+}
+
+.title {
+  font-size: 1.5em;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+#logo {
+  height: 1.5em;
+}
+
+button {
+  border: 0;
+  background: #c000c0;
+  color: #eee;
+  font-size: 1.5em;
+  border-radius: 30px;
+  height: 1.5em;
+}

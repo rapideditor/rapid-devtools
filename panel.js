@@ -1,18 +1,66 @@
-// This one acts in the context of the panel in the Dev Tools
-//
-// Can use
-// chrome.devtools.*
-// chrome.extension.*
+function fetchRapidVersion() {
+  chrome.devtools.inspectedWindow.eval(
+    `
+    (function() {
+      //Retrieve version from inspected tab's window
+      return window.rapidContext.version;
+    })();
+    `,
+    function(result, isException) {
+      if (!isException) {
+        displayRapidVersion(result);
+      } else {
+        console.error("Error fetching Rapid version:", isException);
+      }
+    }
+  );
+}
 
-document.querySelector('#executescript').addEventListener('click', function() {
-    sendObjectToInspectedPage({action: "code", content: "console.log('Inline script executed')"});
-}, false);
+function fetchRapidHistory(version) {
+  chrome.devtools.inspectedWindow.eval(
+    `
+    (function() {
+      return window.rapidContext.systems.editor._history;
+    })();
+    `,
+    function(result, isException) {
+      if (!isException) {
+        displayRapidHistory(version, result);
 
-document.querySelector('#insertscript').addEventListener('click', function() {
-    sendObjectToInspectedPage({action: "script", content: "inserted-script.js"});
-}, false);
+      } else {
+        console.error("Error fetching Rapid version:", isException);
+      }
+    }
+  );
+}
 
-document.querySelector('#insertmessagebutton').addEventListener('click', function() {
-    sendObjectToInspectedPage({action: "code", content: "document.body.innerHTML='<button>Send message to DevTools</button>'"});
-    sendObjectToInspectedPage({action: "script", content: "messageback-script.js"});
-}, false);
+// Function to display the version in panel's UI
+function displayRapidVersion(version) {
+  const rapidVersionElement = document.getElementById('rapidVersion');
+  if (version !== undefined) {
+    rapidVersionElement.textContent = `Rapid Version Detected: ${version}`;
+    fetchRapidHistory(version);
+  } else {
+    rapidVersionElement.textContent = "Rapid is not running"
+  }
+  // rapidVersionElement.textContent = version !== undefined ? `Rapid Version Detected: ${version}` : "Rapid is not running";
+}
+
+// Function to display history in panel's UI
+function displayRapidHistory(version, history) {
+  const rapidHistoryElement = document.getElementById('rapidHistory');
+  rapidHistoryElement.textContent = "Rapid History:";
+
+  for (let i = 1; i < history.length; i++) {
+    const ele = history[i]
+    let ol = document.createElement("ol");
+    ol.innerText = `${i}) ${ele.annotation}`;
+    rapidHistoryElement.appendChild(ol);
+  }
+}
+
+// Initial fetch of 'rapidVersion' when panel is opened
+fetchRapidVersion();
+
+//Update on selection change
+chrome.devtools.panels.elements.onSelectionChanged.addListener(fetchRapidVersion);

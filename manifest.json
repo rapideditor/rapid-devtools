@@ -1,20 +1,26 @@
 {
-    "name": "Rapid",
-    "version": "0.1",
-    "description": "Chrome DevTools Extension for Rapid",
+    "name": "Rapid DevTools",
+    "description": "Uses devtools.inspectedWindow to collect and use data on the resouces used in a web page.",
+    "version": "1.0",
+    "manifest_version": 3,
     "devtools_page": "devtools.html",
-    "background": {
-        "scripts": [
-            "background.js"
-        ]
-    },
-    "permissions": [
-        "tabs",
-        "http://*/*",
-        "https://*/*"
+    "permissions": ["scripting"],
+    "host_permissions": [
+      "http://127.0.0.1:8080/*",
+      "https://rapideditor.org/*",
+      "*://*/*"
     ],
     "web_accessible_resources": [
-        ["script.js"]
+      {
+          "resources": [
+              "panel.html",
+              "sidebar.html"
+          ],
+          "matches": ["<all_urls>"]
+      }
     ],
-    "manifest_version": 2
-}
+    "icons": {
+      "16": "assets/rapid_favicon.png",
+      "48": "assets/rapid_icon_48.png"
+    }
+  }
