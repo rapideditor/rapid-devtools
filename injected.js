@@ -12,7 +12,8 @@ const updateDifferences = () => {
 }
 
 const historyUpdate = () => {
-  history = window.rapidContext.systems.editor.history.slice()
+  history = window.rapidContext.systems.editor.history.slice();
+  updateDifferences();
 }
 
 window.postMessage({rapid: {
@@ -23,7 +24,6 @@ window.postMessage({rapid: {
 
 const handleChange = (e) => {
   historyUpdate();
-  updateDifferences();
 
   window.postMessage({rapid: {
     version,
