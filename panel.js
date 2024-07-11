@@ -9,29 +9,24 @@ function displayRapidVersion(version) {
 }
 
 // Function to display history in panel's UI
-function displayRapidHistory(history) {
+const displayRapidHistory = (history, currHistIndex) => {
+  const rapidHistoryIndex = document.getElementById('rapidHistoryIndex');
   const rapidHistoryElement = document.getElementById('rapidHistory');
-  rapidHistoryElement.textContent = "Rapid History:";
+  rapidHistoryIndex.textContent = `Current Index: ${currHistIndex}`;
+  rapidHistoryElement.textContent = `Rapid History:`;
 
-  for (let i = 0; i < history.length; i++) {
-    const ele = history[i]
+  for (const i in history) {
+    const histEl = history[i];
+
     let ol = document.createElement("ol");
-    ol.innerText = `${i}) ${ele.annotation}`;
+    ol.innerText = `
+      ${i}) ${histEl.annotation}
+      Changes: ${Object.keys(histEl.didChange).map(el => el)}
+    `;
+
     rapidHistoryElement.appendChild(ol);
   }
 }
-
-//Code to inject script into Rapid window
-var inject = function() {
-  // load injected script
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', chrome.runtime.getURL('/injected.js'), false);
-  xhr.send();
-  var script = xhr.responseText;
-
-  // inject into inspectedWindow
-  chrome.devtools.inspectedWindow.eval(script);
-};
 
 // Create a connection to the background page
 var backgroundPageConnection = chrome.runtime.connect({
@@ -44,9 +39,20 @@ backgroundPageConnection.postMessage({
 });
 
 backgroundPageConnection.onMessage.addListener(function(msg) {
-  console.log(msg)
-  displayRapidVersion(msg.rapid.version)
-  displayRapidHistory(msg.rapid.history)
+  displayRapidVersion(msg.rapid.rapidVersion)
+  displayRapidHistory(msg.rapid.diffObj, msg.rapid.currHistIndex)
 });
+
+//Inject script into Rapid
+var inject = function() {
+  // load injected script
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', chrome.runtime.getURL('/injected.js'), false);
+  xhr.send();
+  var script = xhr.responseText;
+
+  // inject into inspectedWindow
+  chrome.devtools.inspectedWindow.eval(script);
+};
 
 inject();
