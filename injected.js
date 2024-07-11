@@ -1,3 +1,5 @@
+console.log("DevTools script injected")
+
 //SEND HISTORY TO CONTENT SCRIPT > SERVICE WORKER > DEVTOOLS
 let rapidVersion = window.rapidContext.version;
 let rapidHistory = window.rapidContext.systems.editor.history;
@@ -19,7 +21,8 @@ diffObj = {
 //Test area: http://127.0.0.1:8080/#map=19.58/37.29942/-121.76374&background=Bing&datasets=fbRoads,msBuildings&disable_features=boundaries
 
 const updateDifferences = () => {
-  diffObj[0] = new diffEl()
+  diffObj = {};
+  diffObj[0] = new diffEl();
 
   for (let i = 1; i < rapidHistory.length; i++) {
     let curr = rapidHistory[i].graph;
