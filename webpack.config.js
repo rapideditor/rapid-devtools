@@ -4,12 +4,12 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   mode: "development",
+  devtool: 'cheap-module-source-map',
   entry: {
     popup: './src/popup/popup.jsx'
   },
   output:{
-    path: path.join(__dirname, '/dist'),
-    filename: '[name].jsx'
+    filename: '[name].js'
   },
   resolve: {
     extensions: ['.jsx', '.js', '.css']
@@ -22,6 +22,25 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
+      },
+      {
+        exclude: /node_modules/,
+        test: /\.css$/i,
+         use: [
+            "style-loader",
+            "css-loader"
+         ]
+      },
+      {
+        test: /\.(png|jp(e*)g|svg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'images/[hash]-[name].[ext]',
+            },
+          },
+        ],
       }
     ]
   },
@@ -34,10 +53,17 @@ module.exports = {
           to: path.resolve('dist/assets') }
       ],
     }),
-    new HtmlWebpackPlugin({
-      title: 'Rapid Devtool',
-      filename: 'popup.html',
-      chunks: ['popup']
-    })
+    ...getHtmlPlugins(["popup"])
   ]
+}
+
+function getHtmlPlugins(chunks) {
+  return chunks.map(
+      (chunk) =>
+          new HtmlWebpackPlugin({
+              title: "React DevTool",
+              filename: `${chunk}.html`,
+              chunks: [chunk],
+          })
+  );
 }
