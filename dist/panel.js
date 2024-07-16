@@ -2,9 +2,9 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./src/popup/popup.css":
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/panel/panel.css":
 /*!*******************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./src/popup/popup.css ***!
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/panel/panel.css ***!
   \*******************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -25,8 +25,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, `body {
   background: rgba(25, 25, 25, 0.9);
   color: whitesmoke;
   font-family: monospace;
-  width: 20em;
-  border-radius: 10em;
 }
 
 .title {
@@ -39,7 +37,16 @@ ___CSS_LOADER_EXPORT___.push([module.id, `body {
 
 #logo {
   height: 1.5em;
-}`, "",{"version":3,"sources":["webpack://./src/popup/popup.css"],"names":[],"mappings":"AAAA;EACE,iCAAiC;EACjC,iBAAiB;EACjB,sBAAsB;EACtB,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,kBAAkB;EAClB,aAAa;EACb,mBAAmB;EACnB,UAAU;AACZ;;AAEA;EACE,aAAa;AACf","sourcesContent":["body {\n  background: rgba(25, 25, 25, 0.9);\n  color: whitesmoke;\n  font-family: monospace;\n  width: 20em;\n  border-radius: 10em;\n}\n\n.title {\n  font-size: 1.5em;\n  font-style: italic;\n  display: flex;\n  align-items: center;\n  gap: 0.4em;\n}\n\n#logo {\n  height: 1.5em;\n}"],"sourceRoot":""}]);
+}
+
+button {
+  border: 0;
+  background: #c000c0;
+  color: #eee;
+  font-size: 1.5em;
+  border-radius: 30px;
+  height: 1.5em;
+}`, "",{"version":3,"sources":["webpack://./src/panel/panel.css"],"names":[],"mappings":"AAAA;EACE,iCAAiC;EACjC,iBAAiB;EACjB,sBAAsB;AACxB;;AAEA;EACE,gBAAgB;EAChB,kBAAkB;EAClB,aAAa;EACb,mBAAmB;EACnB,UAAU;AACZ;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,SAAS;EACT,mBAAmB;EACnB,WAAW;EACX,gBAAgB;EAChB,mBAAmB;EACnB,aAAa;AACf","sourcesContent":["body {\n  background: rgba(25, 25, 25, 0.9);\n  color: whitesmoke;\n  font-family: monospace;\n}\n\n.title {\n  font-size: 1.5em;\n  font-style: italic;\n  display: flex;\n  align-items: center;\n  gap: 0.4em;\n}\n\n#logo {\n  height: 1.5em;\n}\n\nbutton {\n  border: 0;\n  background: #c000c0;\n  color: #eee;\n  font-size: 1.5em;\n  border-radius: 30px;\n  height: 1.5em;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -33607,9 +33614,9 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./src/popup/popup.css":
+/***/ "./src/panel/panel.css":
 /*!*****************************!*\
-  !*** ./src/popup/popup.css ***!
+  !*** ./src/panel/panel.css ***!
   \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -33629,7 +33636,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_popup_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!./popup.css */ "./node_modules/css-loader/dist/cjs.js!./src/popup/popup.css");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_panel_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!./panel.css */ "./node_modules/css-loader/dist/cjs.js!./src/panel/panel.css");
 
       
       
@@ -33649,12 +33656,12 @@ options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WE
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_popup_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_panel_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
 
 
 
 
-       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_popup_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_popup_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_popup_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_panel_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_panel_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_panel_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
 
 /***/ }),
@@ -34048,29 +34055,73 @@ module.exports = styleTagTransform;
 /************************************************************************/
 var __webpack_exports__ = {};
 /*!*****************************!*\
-  !*** ./src/popup/popup.jsx ***!
+  !*** ./src/panel/panel.jsx ***!
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var _popup_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./popup.css */ "./src/popup/popup.css");
-/* harmony import */ var _assets_rapid_logo_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../assets/rapid-logo.svg */ "./src/assets/rapid-logo.svg");
+/* harmony import */ var _assets_rapid_logo_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../assets/rapid-logo.svg */ "./src/assets/rapid-logo.svg");
+/* harmony import */ var _panel_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./panel.css */ "./src/panel/panel.css");
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+/*global chrome*/
+
+//IMPORTS - REACT
 
 
 
 
-var popup = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-  className: "title"
-}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-  src: _assets_rapid_logo_svg__WEBPACK_IMPORTED_MODULE_3__["default"],
-  alt: "Rapid Logo",
-  id: "logo"
-}), " DevTools"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "test test test"));
+
+var Panel = function Panel() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState2 = _slicedToArray(_useState, 2),
+    rapidContext = _useState2[0],
+    setRapidContext = _useState2[1];
+
+  // Create a connection to the background page
+  var backgroundPageConnection = chrome.runtime.connect({
+    name: 'panel'
+  });
+  backgroundPageConnection.postMessage({
+    name: 'init',
+    tabId: chrome.devtools.inspectedWindow.tabId
+  });
+  backgroundPageConnection.onMessage.addListener(function (msg) {
+    setRapidContext(msg.rapid);
+  });
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    //Inject script into Rapid
+    var inject = function inject() {
+      // load injected script
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', chrome.runtime.getURL('/injected.js'), false);
+      xhr.send();
+      var script = xhr.responseText;
+
+      // inject into inspectedWindow
+      chrome.devtools.inspectedWindow.eval(script);
+    };
+    inject();
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+    className: "title"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    src: _assets_rapid_logo_svg__WEBPACK_IMPORTED_MODULE_2__["default"],
+    alt: "Rapid Logo",
+    id: "logo"
+  }), " DevTools"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, rapidContext.rapidVersion ? "Rapid Version Detected: ".concat(rapidContext.rapidVersion) : "Rapid is not running"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Current Index: ", rapidContext.currHistIndex));
+};
+
+//RENDER
 var container = document.createElement('div');
 document.body.appendChild(container);
 var root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(container);
-root.render(popup);
+root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Panel, null));
 /******/ })()
 ;
-//# sourceMappingURL=popup.js.map
+//# sourceMappingURL=panel.js.map

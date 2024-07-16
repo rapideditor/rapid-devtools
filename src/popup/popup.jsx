@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './popup.css'
 import RapidLogo from '../assets/rapid-logo.svg'
 
-const test = (
+const popup = (
     <div>
         <h1 className="title">
             <img src ={RapidLogo} alt="Rapid Logo" id="logo"/> DevTools
@@ -16,4 +16,4 @@ const container = document.createElement('div')
 document.body.appendChild(container)
 
 const root = createRoot(container)
-root.render(test)
+root.render(popup)

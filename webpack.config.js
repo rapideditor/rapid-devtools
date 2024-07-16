@@ -6,7 +6,12 @@ module.exports = {
   mode: "development",
   devtool: 'cheap-module-source-map',
   entry: {
-    popup: './src/popup/popup.jsx'
+    popup: './src/popup/popup.jsx',
+    devtools: './src/devtools/devtools.js',
+    background:'./src/service-worker/background.js',
+    panel: './src/panel/panel.jsx',
+    'content-script': './src/content/content-script.js',
+    injected: './src/injected/injected.js'
   },
   output:{
     filename: '[name].js'
@@ -53,7 +58,7 @@ module.exports = {
           to: path.resolve('dist/assets') }
       ],
     }),
-    ...getHtmlPlugins(["popup"])
+    ...getHtmlPlugins(["popup", "devtools", "panel"])
   ]
 }
 
