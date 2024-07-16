@@ -1,0 +1,49 @@
+{
+    "name": "Rapid DevTools",
+    "description": "Devtools for Rapid",
+    "version": "1.0",
+    "manifest_version": 3,
+    // "devtools_page": "devtools.html",
+    "permissions": ["scripting"],
+    "host_permissions": [
+      "http://127.0.0.1:8080/*",
+      "https://rapideditor.org/*",
+      "*://*/*"
+    ],
+    "web_accessible_resources": [
+      {
+          "resources": [
+              "panel.html",
+              "sidebar.html",
+              "injected.js"
+          ],
+          "matches": ["<all_urls>"]
+      }
+    ],
+    "icons": {
+      "16": "assets/rapid_favicon.png",
+      "48": "assets/rapid_icon_48.png"
+    },
+    // "background": {
+    //   "service_worker": "background.js",
+    //   "type": "module"
+    // },
+    // "content_scripts": [
+    //   {
+    //     "matches": ["http://127.0.0.1:8080/*"],
+    //     "js": ["content-script.js"],
+    //     "all_frames": true,
+    //     "run_at": "document_end"
+    //   }
+    // ],
+    "externally_connectable": {
+      "matches": ["http://127.0.0.1:8080/*"]
+    },
+    "action": {
+      "default_icon": {
+        "16": "assets/rapid_favicon.png"
+      },
+      "default_title": "Click Me",
+      "default_popup": "popup.html"
+    }
+  }
