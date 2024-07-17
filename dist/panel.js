@@ -26,7 +26,7 @@ var HistoryItem = function HistoryItem(_ref) {
     key: id
   }, console.log(historyItem), "".concat(id, ") ").concat(historyItem.annotation), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "history-details"
-  }, "Change: ", id === 0 ? historyItem.didChange : Object.keys(historyItem.didChange).toString()));
+  }, "Change Type: ", id === 0 ? historyItem.didChange : Object.keys(historyItem.didChange).toString()));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HistoryItem);
 

@@ -7,7 +7,7 @@ const HistoryItem = ({historyItem, currIndex, id}) => {
         <div className={currIndex === id ? "currIndex history-item" : "history-item"} key={id}>
             {console.log(historyItem)}
             {`${id}) ${historyItem.annotation}`}
-            <p className='history-details'>Change: {(id === 0) ? historyItem.didChange : Object.keys(historyItem.didChange).toString()}</p>
+            <p className='history-details'>Change Type: {(id === 0) ? historyItem.didChange : Object.keys(historyItem.didChange).toString()}</p>
         </div>
     )
 }

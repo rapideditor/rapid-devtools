@@ -47,7 +47,7 @@ const updateDifferences = () => {
 class diffEl {
   constructor (annotation, didChange, changes) {
     this.annotation = annotation ? annotation : "No change made.";
-    this.didChange = didChange ? didChange : "None.";
+    this.didChange = didChange ? didChange : "none";
     this.changes = changes ? changes : "";
   }
 }
