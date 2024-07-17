@@ -50,11 +50,11 @@ const Panel = () => {
       </h1>
       <div>
         {rapidContext.rapidVersion ?
-        <div>
+        <>
           <div><h1>Rapid Version Detected:</h1> {rapidContext.rapidVersion}</div>
           <div><h1>Current Index:</h1> {rapidContext.currHistIndex}</div>
           <RapidHistory history = {rapidContext.diffObj} currIndex={rapidContext.currHistIndex}/>
-        </div>
+        </>
         : "Rapid is not running"}
       </div>
 
