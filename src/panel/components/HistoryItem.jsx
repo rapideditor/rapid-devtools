@@ -1,21 +1,14 @@
 import React from 'react';
+import './HistoryItem.css'
 
-/*
-diffObj = [
-    1: {
-        annotation: 'Deleted an area'
-        didChange: 'deletion'
-        changes: {...}
-      }
-  ]
-*/
-
-const HistoryItem = ({historyItem, key}) => {
+const HistoryItem = ({historyItem, currIndex, id}) => {
 
     return (
-        <>
-            {/* {`${key}) ${historyItem.annotation}`} */}
-        </>
+        <div className={currIndex === id ? "currIndex history-item" : "history-item"} key={id}>
+            {console.log(historyItem)}
+            {`${id}) ${historyItem.annotation}`}
+            <p className='history-details'>Change: {(id === 0) ? historyItem.didChange : Object.keys(historyItem.didChange).toString()}</p>
+        </div>
     )
 }
 

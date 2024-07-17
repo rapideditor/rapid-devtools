@@ -2,9 +2,9 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/panel/components/HistoryItem.jsx":
+/***/ "./src/panel/components/historyItem.jsx":
 /*!**********************************************!*\
-  !*** ./src/panel/components/HistoryItem.jsx ***!
+  !*** ./src/panel/components/historyItem.jsx ***!
   \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -14,30 +14,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _HistoryItem_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HistoryItem.css */ "./src/panel/components/HistoryItem.css");
 
-
-/*
-diffObj = [
-    1: {
-        annotation: 'Deleted an area'
-        didChange: 'deletion'
-        changes: {...}
-      }
-  ]
-*/
 
 var HistoryItem = function HistoryItem(_ref) {
   var historyItem = _ref.historyItem,
-    key = _ref.key;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null);
+    currIndex = _ref.currIndex,
+    id = _ref.id;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: currIndex === id ? "currIndex history-item" : "history-item",
+    key: id
+  }, console.log(historyItem), "".concat(id, ") ").concat(historyItem.annotation), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "history-details"
+  }, "Change: ", id === 0 ? historyItem.didChange : Object.keys(historyItem.didChange).toString()));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HistoryItem);
 
 /***/ }),
 
-/***/ "./src/panel/components/RapidHistory.jsx":
+/***/ "./src/panel/components/rapidHistory.jsx":
 /*!***********************************************!*\
-  !*** ./src/panel/components/RapidHistory.jsx ***!
+  !*** ./src/panel/components/rapidHistory.jsx ***!
   \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -47,15 +44,60 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _HistoryItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HistoryItem */ "./src/panel/components/HistoryItem.jsx");
+/* harmony import */ var _historyItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./historyItem */ "./src/panel/components/historyItem.jsx");
 
 
-var RapidHistory = function RapidHistory(history) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, console.log("RapidHistory", history, history[0]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_HistoryItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    historyItem: history[0]
+var RapidHistory = function RapidHistory(_ref) {
+  var history = _ref.history,
+    currIndex = _ref.currIndex;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Edit History:"), history.map(function (historyItem, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_historyItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      historyItem: historyItem,
+      currIndex: currIndex,
+      id: i,
+      key: i
+    });
   }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RapidHistory);
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/panel/components/HistoryItem.css":
+/*!************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/panel/components/HistoryItem.css ***!
+  \************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.currIndex {
+  background-color: var(--rapid-pink);
+  color: var(--rapid-black);
+}
+
+.history-item {
+  padding-left: 1em;
+  margin-bottom: 0.5em;
+}
+
+.history-details {
+  padding-left: 1.75em;
+}`, "",{"version":3,"sources":["webpack://./src/panel/components/HistoryItem.css"],"names":[],"mappings":"AAAA;EACE,mCAAmC;EACnC,yBAAyB;AAC3B;;AAEA;EACE,iBAAiB;EACjB,oBAAoB;AACtB;;AAEA;EACE,oBAAoB;AACtB","sourcesContent":[".currIndex {\n  background-color: var(--rapid-pink);\n  color: var(--rapid-black);\n}\n\n.history-item {\n  padding-left: 1em;\n  margin-bottom: 0.5em;\n}\n\n.history-details {\n  padding-left: 1.75em;\n}"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
 
 /***/ }),
 
@@ -78,9 +120,44 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `body {
-  background: rgba(25, 25, 25, 0.9);
-  color: whitesmoke;
+___CSS_LOADER_EXPORT___.push([module.id, `/* CSS RESET */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+input, button, textarea, select {
+  font: inherit;
+}
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+#root, #__next {
+  isolation: isolate;
+}
+
+:root {
+  --rapid-black: rgba(25, 25, 25, 0.9);
+  --rapid-pink: rgb(199, 10, 198);
+  --rapid-white: rgb(255, 244, 240);
+  --rapid-yellow: rgb(254, 184, 32);
+  --rapid-orange: rgb(255, 94, 32);
+  --rapid-gray: rgb(242, 242, 242);
+}
+
+body {
+  padding: 1em;
+  background: var(--rapid-black);
+  color: var(--rapid-white);
   font-family: monospace;
 }
 
@@ -98,12 +175,17 @@ ___CSS_LOADER_EXPORT___.push([module.id, `body {
 
 button {
   border: 0;
-  background: #c000c0;
-  color: #eee;
+  background: var(--rapid-pink);
+  color: var(--rapid-white);
   font-size: 1.5em;
   border-radius: 30px;
   height: 1.5em;
-}`, "",{"version":3,"sources":["webpack://./src/panel/panel.css"],"names":[],"mappings":"AAAA;EACE,iCAAiC;EACjC,iBAAiB;EACjB,sBAAsB;AACxB;;AAEA;EACE,gBAAgB;EAChB,kBAAkB;EAClB,aAAa;EACb,mBAAmB;EACnB,UAAU;AACZ;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,SAAS;EACT,mBAAmB;EACnB,WAAW;EACX,gBAAgB;EAChB,mBAAmB;EACnB,aAAa;AACf","sourcesContent":["body {\n  background: rgba(25, 25, 25, 0.9);\n  color: whitesmoke;\n  font-family: monospace;\n}\n\n.title {\n  font-size: 1.5em;\n  font-style: italic;\n  display: flex;\n  align-items: center;\n  gap: 0.4em;\n}\n\n#logo {\n  height: 1.5em;\n}\n\nbutton {\n  border: 0;\n  background: #c000c0;\n  color: #eee;\n  font-size: 1.5em;\n  border-radius: 30px;\n  height: 1.5em;\n}"],"sourceRoot":""}]);
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 1em;
+}`, "",{"version":3,"sources":["webpack://./src/panel/panel.css"],"names":[],"mappings":"AAAA,cAAc;AACd;EACE,sBAAsB;AACxB;AACA;EACE,SAAS;AACX;AACA;EACE,gBAAgB;EAChB,mCAAmC;AACrC;AACA;EACE,cAAc;EACd,eAAe;AACjB;AACA;EACE,aAAa;AACf;AACA;EACE,yBAAyB;AAC3B;AACA;EACE,kBAAkB;AACpB;;AAEA;EACE,oCAAoC;EACpC,+BAA+B;EAC/B,iCAAiC;EACjC,iCAAiC;EACjC,gCAAgC;EAChC,gCAAgC;AAClC;;AAEA;EACE,YAAY;EACZ,8BAA8B;EAC9B,yBAAyB;EACzB,sBAAsB;AACxB;;AAEA;EACE,gBAAgB;EAChB,kBAAkB;EAClB,aAAa;EACb,mBAAmB;EACnB,UAAU;AACZ;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,SAAS;EACT,6BAA6B;EAC7B,yBAAyB;EACzB,gBAAgB;EAChB,mBAAmB;EACnB,aAAa;AACf;;AAEA;EACE,gBAAgB;EAChB,cAAc;AAChB","sourcesContent":["/* CSS RESET */\n*, *::before, *::after {\n  box-sizing: border-box;\n}\n* {\n  margin: 0;\n}\nbody {\n  line-height: 1.5;\n  -webkit-font-smoothing: antialiased;\n}\nimg, picture, video, canvas, svg {\n  display: block;\n  max-width: 100%;\n}\ninput, button, textarea, select {\n  font: inherit;\n}\np, h1, h2, h3, h4, h5, h6 {\n  overflow-wrap: break-word;\n}\n#root, #__next {\n  isolation: isolate;\n}\n\n:root {\n  --rapid-black: rgba(25, 25, 25, 0.9);\n  --rapid-pink: rgb(199, 10, 198);\n  --rapid-white: rgb(255, 244, 240);\n  --rapid-yellow: rgb(254, 184, 32);\n  --rapid-orange: rgb(255, 94, 32);\n  --rapid-gray: rgb(242, 242, 242);\n}\n\nbody {\n  padding: 1em;\n  background: var(--rapid-black);\n  color: var(--rapid-white);\n  font-family: monospace;\n}\n\n.title {\n  font-size: 1.5em;\n  font-style: italic;\n  display: flex;\n  align-items: center;\n  gap: 0.4em;\n}\n\n#logo {\n  height: 1.5em;\n}\n\nbutton {\n  border: 0;\n  background: var(--rapid-pink);\n  color: var(--rapid-white);\n  font-size: 1.5em;\n  border-radius: 30px;\n  height: 1.5em;\n}\n\nh1 {\n  font-weight: 600;\n  font-size: 1em;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -33671,6 +33753,58 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./src/panel/components/HistoryItem.css":
+/*!**********************************************!*\
+  !*** ./src/panel/components/HistoryItem.css ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_HistoryItem_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!./HistoryItem.css */ "./node_modules/css-loader/dist/cjs.js!./src/panel/components/HistoryItem.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_HistoryItem_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_HistoryItem_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_HistoryItem_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_HistoryItem_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
 /***/ "./src/panel/panel.css":
 /*!*****************************!*\
   !*** ./src/panel/panel.css ***!
@@ -34118,7 +34252,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var _components_RapidHistory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/RapidHistory */ "./src/panel/components/RapidHistory.jsx");
+/* harmony import */ var _components_rapidHistory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/rapidHistory */ "./src/panel/components/rapidHistory.jsx");
 /* harmony import */ var _assets_rapid_logo_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../assets/rapid-logo.svg */ "./src/assets/rapid-logo.svg");
 /* harmony import */ var _panel_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./panel.css */ "./src/panel/panel.css");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
@@ -34142,19 +34276,23 @@ var Panel = function Panel() {
     rapidContext = _useState2[0],
     setRapidContext = _useState2[1];
 
-  // Create a connection to the background page
+  // CREATE CONNECTION TO BACKGROUND PAGE
   var backgroundPageConnection = chrome.runtime.connect({
     name: 'panel'
   });
-  backgroundPageConnection.postMessage({
-    name: 'init',
-    tabId: chrome.devtools.inspectedWindow.tabId
-  });
-  backgroundPageConnection.onMessage.addListener(function (msg) {
-    setRapidContext(msg.rapid);
-  });
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    //Inject script into Rapid
+    //Post message to background page
+    backgroundPageConnection.postMessage({
+      name: 'init',
+      tabId: chrome.devtools.inspectedWindow.tabId
+    });
+
+    //Create message listener to background page
+    backgroundPageConnection.onMessage.addListener(function (msg) {
+      setRapidContext(msg.rapid);
+    });
+
+    //INJECT SCRIPT INTO RAPID
     var inject = function inject() {
       // load injected script
       var xhr = new XMLHttpRequest();
@@ -34173,9 +34311,10 @@ var Panel = function Panel() {
     src: _assets_rapid_logo_svg__WEBPACK_IMPORTED_MODULE_3__["default"],
     alt: "Rapid Logo",
     id: "logo"
-  }), " DevTools"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, rapidContext.rapidVersion ? "Rapid Version Detected: ".concat(rapidContext.rapidVersion) : "Rapid is not running"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Current Index: ", rapidContext.currHistIndex, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_RapidHistory__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    history: rapidContext.diffObj
-  })));
+  }), " DevTools"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, rapidContext.rapidVersion ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Rapid Version Detected:"), " ", rapidContext.rapidVersion, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Current Index:"), " ", rapidContext.currHistIndex, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_rapidHistory__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    history: rapidContext.diffObj,
+    currIndex: rapidContext.currHistIndex
+  })) : "Rapid is not running"));
 };
 
 //RENDER

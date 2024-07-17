@@ -4,29 +4,31 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { useEffect, useState } from 'react';
-import RapidHistory from './components/RapidHistory';
+import RapidHistory from './components/rapidHistory';
 import RapidLogo from '../assets/rapid-logo.svg'
 import './panel.css';
 
 const Panel = () => {
   const [rapidContext, setRapidContext] = useState({})
 
-  // Create a connection to the background page
+  // CREATE CONNECTION TO BACKGROUND PAGE
   var backgroundPageConnection = chrome.runtime.connect({
     name: 'panel'
   });
 
-  backgroundPageConnection.postMessage({
-    name: 'init',
-    tabId: chrome.devtools.inspectedWindow.tabId
-  });
-
-  backgroundPageConnection.onMessage.addListener(function(msg) {
-    setRapidContext(msg.rapid)
-  });
-
   useEffect(() => {
-    //Inject script into Rapid
+    //Post message to background page
+    backgroundPageConnection.postMessage({
+      name: 'init',
+      tabId: chrome.devtools.inspectedWindow.tabId
+    });
+
+    //Create message listener to background page
+    backgroundPageConnection.onMessage.addListener(function(msg) {
+      setRapidContext(msg.rapid)
+    });
+
+    //INJECT SCRIPT INTO RAPID
     var inject = function() {
       // load injected script
       var xhr = new XMLHttpRequest();
@@ -47,12 +49,15 @@ const Panel = () => {
           <img src ={RapidLogo} alt="Rapid Logo" id="logo"/> DevTools
       </h1>
       <div>
-        {rapidContext.rapidVersion ? `Rapid Version Detected: ${rapidContext.rapidVersion}` : "Rapid is not running"}
+        {rapidContext.rapidVersion ?
+        <div>
+          <h1>Rapid Version Detected:</h1> {rapidContext.rapidVersion}
+          <h1>Current Index:</h1> {rapidContext.currHistIndex}
+          <RapidHistory history = {rapidContext.diffObj} currIndex={rapidContext.currHistIndex}/>
+        </div>
+        : "Rapid is not running"}
       </div>
-      <div>
-        Current Index: {rapidContext.currHistIndex}
-        <RapidHistory history = {rapidContext.diffObj} />
-      </div>
+
     </>
   )
 }

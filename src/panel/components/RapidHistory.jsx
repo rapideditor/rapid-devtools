@@ -1,12 +1,16 @@
 import React from 'react';
-import HistoryItem from './HistoryItem';
+import HistoryItem from './historyItem';
 
-const RapidHistory = (history) => {
+const RapidHistory = ({history, currIndex}) => {
 
     return (
         <>
-            {console.log("RapidHistory", history, history[0])}
-            <HistoryItem historyItem={history[0]} />
+            <h1>Edit History:</h1>
+            {history.map((historyItem, i) => <HistoryItem
+                                                    historyItem={historyItem}
+                                                    currIndex={currIndex}
+                                                    id={i}
+                                                    key={i} />)}
         </>
     )
 }

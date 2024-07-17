@@ -1,0 +1,13 @@
+.currIndex {
+  background-color: var(--rapid-pink);
+  color: var(--rapid-black);
+}
+
+.history-item {
+  padding-left: 1em;
+  margin-bottom: 0.5em;
+}
+
+.history-details {
+  padding-left: 1.75em;
+}

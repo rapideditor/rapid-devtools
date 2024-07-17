@@ -26,7 +26,7 @@ diffObj = [
 
 const updateDifferences = () => {
   diffObj = [];
-  diffObj[0] = new diffEl();
+  diffObj.push(new diffEl());
 
   for (let i = 1; i < rapidHistory.length; i++) {
     let curr = rapidHistory[i].graph;
@@ -34,11 +34,11 @@ const updateDifferences = () => {
 
     let differences = new Rapid.Difference(prev,curr);
 
-    diffObj[i] = new diffEl(
+    diffObj.push(new diffEl(
       rapidHistory[i].annotation,
       differences.didChange,
       differences.changes ? Object.fromEntries(differences.changes) : {}
-    )
+    ))
   }
 
   sendRapidContext();
