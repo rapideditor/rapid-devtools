@@ -2,6 +2,63 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/panel/components/HistoryItem.jsx":
+/*!**********************************************!*\
+  !*** ./src/panel/components/HistoryItem.jsx ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/*
+diffObj = [
+    1: {
+        annotation: 'Deleted an area'
+        didChange: 'deletion'
+        changes: {...}
+      }
+  ]
+*/
+
+var HistoryItem = function HistoryItem(_ref) {
+  var historyItem = _ref.historyItem,
+    key = _ref.key;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null);
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HistoryItem);
+
+/***/ }),
+
+/***/ "./src/panel/components/RapidHistory.jsx":
+/*!***********************************************!*\
+  !*** ./src/panel/components/RapidHistory.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _HistoryItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HistoryItem */ "./src/panel/components/HistoryItem.jsx");
+
+
+var RapidHistory = function RapidHistory(history) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, console.log("RapidHistory", history, history[0]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_HistoryItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    historyItem: history[0]
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RapidHistory);
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/panel/panel.css":
 /*!*******************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/panel/panel.css ***!
@@ -34061,8 +34118,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var _assets_rapid_logo_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../assets/rapid-logo.svg */ "./src/assets/rapid-logo.svg");
-/* harmony import */ var _panel_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./panel.css */ "./src/panel/panel.css");
+/* harmony import */ var _components_RapidHistory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/RapidHistory */ "./src/panel/components/RapidHistory.jsx");
+/* harmony import */ var _assets_rapid_logo_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../assets/rapid-logo.svg */ "./src/assets/rapid-logo.svg");
+/* harmony import */ var _panel_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./panel.css */ "./src/panel/panel.css");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -34072,6 +34130,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 /*global chrome*/
 
 //IMPORTS - REACT
+
 
 
 
@@ -34111,10 +34170,12 @@ var Panel = function Panel() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
     className: "title"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    src: _assets_rapid_logo_svg__WEBPACK_IMPORTED_MODULE_2__["default"],
+    src: _assets_rapid_logo_svg__WEBPACK_IMPORTED_MODULE_3__["default"],
     alt: "Rapid Logo",
     id: "logo"
-  }), " DevTools"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, rapidContext.rapidVersion ? "Rapid Version Detected: ".concat(rapidContext.rapidVersion) : "Rapid is not running"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Current Index: ", rapidContext.currHistIndex));
+  }), " DevTools"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, rapidContext.rapidVersion ? "Rapid Version Detected: ".concat(rapidContext.rapidVersion) : "Rapid is not running"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Current Index: ", rapidContext.currHistIndex, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_RapidHistory__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    history: rapidContext.diffObj
+  })));
 };
 
 //RENDER

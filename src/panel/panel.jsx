@@ -4,6 +4,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { useEffect, useState } from 'react';
+import RapidHistory from './components/RapidHistory';
 import RapidLogo from '../assets/rapid-logo.svg'
 import './panel.css';
 
@@ -50,6 +51,7 @@ const Panel = () => {
       </div>
       <div>
         Current Index: {rapidContext.currHistIndex}
+        <RapidHistory history = {rapidContext.diffObj} />
       </div>
     </>
   )
