@@ -1,66 +1,58 @@
-function fetchRapidVersion() {
-  chrome.devtools.inspectedWindow.eval(
-    `
-    (function() {
-      //Retrieve version from inspected tab's window
-      return window.rapidContext.version;
-    })();
-    `,
-    function(result, isException) {
-      if (!isException) {
-        displayRapidVersion(result);
-      } else {
-        console.error("Error fetching Rapid version:", isException);
-      }
-    }
-  );
-}
-
-function fetchRapidHistory(version) {
-  chrome.devtools.inspectedWindow.eval(
-    `
-    (function() {
-      return window.rapidContext.systems.editor._history;
-    })();
-    `,
-    function(result, isException) {
-      if (!isException) {
-        displayRapidHistory(version, result);
-
-      } else {
-        console.error("Error fetching Rapid version:", isException);
-      }
-    }
-  );
-}
-
-// Function to display the version in panel's UI
+// // Function to display the version in panel's UI
 function displayRapidVersion(version) {
   const rapidVersionElement = document.getElementById('rapidVersion');
   if (version !== undefined) {
     rapidVersionElement.textContent = `Rapid Version Detected: ${version}`;
-    fetchRapidHistory(version);
   } else {
     rapidVersionElement.textContent = "Rapid is not running"
   }
-  // rapidVersionElement.textContent = version !== undefined ? `Rapid Version Detected: ${version}` : "Rapid is not running";
 }
 
 // Function to display history in panel's UI
-function displayRapidHistory(version, history) {
+const displayRapidHistory = (history, currHistIndex) => {
+  const rapidHistoryIndex = document.getElementById('rapidHistoryIndex');
   const rapidHistoryElement = document.getElementById('rapidHistory');
-  rapidHistoryElement.textContent = "Rapid History:";
+  rapidHistoryIndex.textContent = `Current Index: ${currHistIndex}`;
+  rapidHistoryElement.textContent = `Rapid History:`;
 
-  for (let i = 1; i < history.length; i++) {
-    const ele = history[i]
+  for (const i in history) {
+    const histEl = history[i];
+
     let ol = document.createElement("ol");
-    ol.innerText = `${i}) ${ele.annotation}`;
+    ol.innerText = `
+      ${i}) ${histEl.annotation}
+      Changes: ${Object.keys(histEl.didChange).map(el => el)}
+    `;
+
     rapidHistoryElement.appendChild(ol);
   }
 }
 
-// Initial fetch of 'rapidVersion' when panel is opened
-fetchRapidVersion();
+// Create a connection to the background page
+var backgroundPageConnection = chrome.runtime.connect({
+  name: 'panel'
+});
 
-//Update on selection change
-chrome.devtools.panels.elements.onSelectionChanged.addListener(fetchRapidVersion);
+backgroundPageConnection.postMessage({
+  name: 'init',
+  tabId: chrome.devtools.inspectedWindow.tabId
+});
+
+backgroundPageConnection.onMessage.addListener(function(msg) {
+  displayRapidVersion(msg.rapid.rapidVersion)
+  displayRapidHistory(msg.rapid.diffObj, msg.rapid.currHistIndex)
+});
+
+//Inject script into Rapid
+var inject = function() {
+  // load injected script
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', chrome.runtime.getURL('/injected.js'), false);
+  xhr.send();
+  var script = xhr.responseText;
+
+  // inject into inspectedWindow
+  chrome.devtools.inspectedWindow.eval(script);
+};
+
+inject();

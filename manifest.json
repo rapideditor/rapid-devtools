@@ -1,6 +1,6 @@
 {
     "name": "Rapid DevTools",
-    "description": "Uses devtools.inspectedWindow to collect and use data on the resouces used in a web page.",
+    "description": "Devtools for Rapid",
     "version": "1.0",
     "manifest_version": 3,
     "devtools_page": "devtools.html",
@@ -14,7 +14,8 @@
       {
           "resources": [
               "panel.html",
-              "sidebar.html"
+              "sidebar.html",
+              "injected.js"
           ],
           "matches": ["<all_urls>"]
       }
@@ -22,5 +23,20 @@
     "icons": {
       "16": "assets/rapid_favicon.png",
       "48": "assets/rapid_icon_48.png"
+    },
+    "background": {
+      "service_worker": "background.js",
+      "type": "module"
+    },
+    "content_scripts": [
+      {
+        "matches": ["http://127.0.0.1:8080/*"],
+        "js": ["content-script.js"],
+        "all_frames": true,
+        "run_at": "document_end"
+      }
+    ],
+    "externally_connectable": {
+      "matches": ["http://127.0.0.1:8080/*"]
     }
   }
