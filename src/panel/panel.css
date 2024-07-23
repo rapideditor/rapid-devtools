@@ -23,6 +23,7 @@ p, h1, h2, h3, h4, h5, h6 {
   isolation: isolate;
 }
 
+/* ROOT VARIABLES */
 :root {
   --rapid-black: rgba(25, 25, 25, 0.9);
   --rapid-pink: rgb(199, 10, 198);
@@ -32,6 +33,7 @@ p, h1, h2, h3, h4, h5, h6 {
   --rapid-gray: rgb(242, 242, 242);
 }
 
+/* PANEL STYLING */
 body {
   padding: 1em;
   background: var(--rapid-black);
