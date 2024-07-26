@@ -1,6 +1,5 @@
 import React, { createRef, useEffect } from 'react';
 import HistoryItem from './historyItem';
-import './RapidHistory.css'
 
 const RapidHistory = ({history, currIndex}) => {
     const historyEndRef = createRef(null);
