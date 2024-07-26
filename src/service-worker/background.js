@@ -1,3 +1,5 @@
+/*global chrome*/
+
 var connections = {};
 
 // Receive message from content script and relay to the devTools page for the
