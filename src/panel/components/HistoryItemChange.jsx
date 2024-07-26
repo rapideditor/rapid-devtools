@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import './HistoryItemChange.css'
 
-const HistoryItemChange = ({change, annotation}) => {
+const HistoryItemChange = ({change}) => {
   const baseNodes = change.base?.nodes;
   const headNodes = change.head?.nodes;
   const [nodeSet, setNodeSet] = useState([])
   const [newNodes, setNewNodes] = useState([]);
   const [oldNodes, setOldNodes] = useState([]);
+  const newTags = change.head?.tags;
 
   useEffect(()=>{
     if (baseNodes && headNodes) {
@@ -20,8 +21,9 @@ const HistoryItemChange = ({change, annotation}) => {
     const nodeDiff = (nodes1, nodes2) => {
       const set1 = new Set(nodes1);
       const set2 = new Set(nodes2);
+
       const difference = [...set1].filter((element) => !set2.has(element));
-      console.log("Difference",nodes1, nodes2, difference)
+
       return difference;
     }
 
@@ -29,8 +31,7 @@ const HistoryItemChange = ({change, annotation}) => {
     setNewNodes(nodeDiff(headNodes,baseNodes));
   },[])
 
-
-
+  //Set styling for whether node is an addition or deletion
   const styleNodes = (node, oldNodes, newNodes) => {
     console.log("Style", node, oldNodes, newNodes)
     if (oldNodes.includes(node)) return "oldItem";
@@ -38,11 +39,19 @@ const HistoryItemChange = ({change, annotation}) => {
   }
 
   return (
-    <p>
-      {console.log("HistoryItemChange",annotation,change)}
-      {/* {baseNodes && !headNodes ? baseNodes.map((node, i) => <span className={styleNodes(node, oldNodes, newNodes)} key={i}> {node} </span>) : ""} */}
-      {nodeSet ? nodeSet.map((node, i) => <span className={styleNodes(node, oldNodes, newNodes)} key={i}> {node} </span>) : ""}
-    </p>
+    <div className="history-details">
+      {nodeSet ?
+        <p id="way-nodes">
+          Nodes: {nodeSet.map((node, i) => <span className={styleNodes(node, oldNodes, newNodes)} key={i}>{node} </span>)}
+        </p>
+      : ""}
+
+      {newTags ?
+        <p id="way-tags">
+          Tags: {Object.entries(newTags).map((tags, i) => <p className="history-details" key={i}>{`${tags[0]}: ${tags[1]}`}</p>)}
+        </p>
+      : ""}
+    </div>
   )
 
 }

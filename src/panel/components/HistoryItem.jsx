@@ -13,8 +13,8 @@ const HistoryItem = ({historyItem, currIndex, id}) => {
                 <p>Change Type: {(id === 0) ? historyItem.didChange : Object.keys(historyItem.didChange).toString()}</p>
                 {historyItem.changes ? Object.keys(historyItem.changes).map((change, i) => (
                     <>
-                        {change[0] === "w" ? `Way ${change}` : ""}
-                        <HistoryItemChange key={i} change={historyItem.changes[change]} annotation={historyItem.annotation}/>
+                        {change[0] === "w" ? `Way ${change}:` : ""}
+                        <HistoryItemChange key={i} change={historyItem.changes[change]}/>
                     </>
                 )): ""}
             </div>

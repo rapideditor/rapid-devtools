@@ -28,9 +28,8 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 var HistoryItemChange = function HistoryItemChange(_ref) {
-  var _change$base, _change$head;
-  var change = _ref.change,
-    annotation = _ref.annotation;
+  var _change$base, _change$head, _change$head2;
+  var change = _ref.change;
   var baseNodes = (_change$base = change.base) === null || _change$base === void 0 ? void 0 : _change$base.nodes;
   var headNodes = (_change$head = change.head) === null || _change$head === void 0 ? void 0 : _change$head.nodes;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
@@ -45,6 +44,7 @@ var HistoryItemChange = function HistoryItemChange(_ref) {
     _useState6 = _slicedToArray(_useState5, 2),
     oldNodes = _useState6[0],
     setOldNodes = _useState6[1];
+  var newTags = (_change$head2 = change.head) === null || _change$head2 === void 0 ? void 0 : _change$head2.tags;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (baseNodes && headNodes) {
       baseNodes.length > headNodes.length ? setNodeSet(baseNodes) : setNodeSet(headNodes);
@@ -59,23 +59,35 @@ var HistoryItemChange = function HistoryItemChange(_ref) {
       var difference = _toConsumableArray(set1).filter(function (element) {
         return !set2.has(element);
       });
-      console.log("Difference", nodes1, nodes2, difference);
       return difference;
     };
     setOldNodes(nodeDiff(baseNodes, headNodes));
     setNewNodes(nodeDiff(headNodes, baseNodes));
   }, []);
+
+  //Set styling for whether node is an addition or deletion
   var styleNodes = function styleNodes(node, oldNodes, newNodes) {
     console.log("Style", node, oldNodes, newNodes);
     if (oldNodes.includes(node)) return "oldItem";
     if (newNodes.includes(node)) return "newItem";
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, console.log("HistoryItemChange", annotation, change), nodeSet ? nodeSet.map(function (node, i) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "history-details"
+  }, nodeSet ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    id: "way-nodes"
+  }, "Nodes: ", nodeSet.map(function (node, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: styleNodes(node, oldNodes, newNodes),
       key: i
-    }, " ", node, " ");
-  }) : "");
+    }, node, " ");
+  })) : "", newTags ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    id: "way-tags"
+  }, "Tags: ", Object.entries(newTags).map(function (tags, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      className: "history-details",
+      key: i
+    }, "".concat(tags[0], ": ").concat(tags[1]));
+  })) : "");
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HistoryItemChange);
 
@@ -129,10 +141,9 @@ var HistoryItem = function HistoryItem(_ref) {
     id: "history-detail-container",
     className: "history-details"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Change Type: ", id === 0 ? historyItem.didChange : Object.keys(historyItem.didChange).toString()), historyItem.changes ? Object.keys(historyItem.changes).map(function (change, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, change[0] === "w" ? "Way ".concat(change) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_HistoryItemChange__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, change[0] === "w" ? "Way ".concat(change, ":") : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_HistoryItemChange__WEBPACK_IMPORTED_MODULE_1__["default"], {
       key: i,
-      change: historyItem.changes[change],
-      annotation: historyItem.annotation
+      change: historyItem.changes[change]
     }));
   }) : ""));
 };
@@ -182,8 +193,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _historyItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./historyItem */ "./src/panel/components/historyItem.jsx");
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './RapidHistory.css'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-
 
 
 var RapidHistory = function RapidHistory(_ref) {
@@ -274,12 +283,12 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.newItem {
-  color: darkgreen;
+  color: greenyellow;
 }
 
 .oldItem {
-  color: darkred;
-}`, "",{"version":3,"sources":["webpack://./src/panel/components/HistoryItemChange.css"],"names":[],"mappings":"AAAA;EACE,gBAAgB;AAClB;;AAEA;EACE,cAAc;AAChB","sourcesContent":[".newItem {\n  color: darkgreen;\n}\n\n.oldItem {\n  color: darkred;\n}"],"sourceRoot":""}]);
+  color: red
+}`, "",{"version":3,"sources":["webpack://./src/panel/components/HistoryItemChange.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;AACpB;;AAEA;EACE;AACF","sourcesContent":[".newItem {\n  color: greenyellow;\n}\n\n.oldItem {\n  color: red\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
