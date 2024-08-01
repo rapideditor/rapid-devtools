@@ -1,8 +1,7 @@
-import React, { createRef, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import HistoryItem from './historyItem';
 
 const RapidHistory = ({history, currIndex}) => {
-    // const historyEndRef = createRef(null);
     const historyRef = useRef(null);
     const scrollToCurrent = () => {
         historyRef.current?.scrollIntoView({ behavior: "smooth" })
