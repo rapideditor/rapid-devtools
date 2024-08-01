@@ -130,14 +130,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var HistoryItem = function HistoryItem(_ref) {
+var HistoryItem = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (_ref, ref) {
   var historyItem = _ref.historyItem,
     currIndex = _ref.currIndex,
     id = _ref.id;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: currIndex === id ? "currIndex history-item" : "history-item",
+    ref: ref,
     key: id
-  }, console.log("HistoryItem", id, historyItem), "".concat(id, ") ").concat(historyItem.annotation), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, "".concat(id, ") ").concat(historyItem.annotation), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "history-detail-container",
     className: "history-details"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Change Type: ", id === 0 ? historyItem.didChange : Object.keys(historyItem.didChange).toString()), historyItem.changes ? Object.keys(historyItem.changes).map(function (change, i) {
@@ -146,7 +147,7 @@ var HistoryItem = function HistoryItem(_ref) {
       change: historyItem.changes[change]
     }));
   }) : ""));
-};
+});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HistoryItem);
 
 /*
@@ -198,16 +199,17 @@ __webpack_require__.r(__webpack_exports__);
 var RapidHistory = function RapidHistory(_ref) {
   var history = _ref.history,
     currIndex = _ref.currIndex;
-  var historyEndRef = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createRef)(null);
-  var scrollToBottom = function scrollToBottom() {
-    var _historyEndRef$curren;
-    (_historyEndRef$curren = historyEndRef.current) === null || _historyEndRef$curren === void 0 || _historyEndRef$curren.scrollIntoView({
+  // const historyEndRef = createRef(null);
+  var historyRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var scrollToCurrent = function scrollToCurrent() {
+    var _historyRef$current;
+    (_historyRef$current = historyRef.current) === null || _historyRef$current === void 0 || _historyRef$current.scrollIntoView({
       behavior: "smooth"
     });
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    scrollToBottom();
-  });
+    scrollToCurrent();
+  }, [currIndex]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "edit-history-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Edit History:"), history.map(function (historyItem, i) {
@@ -215,10 +217,9 @@ var RapidHistory = function RapidHistory(_ref) {
       historyItem: historyItem,
       currIndex: currIndex,
       id: i,
+      ref: currIndex === i ? historyRef : null,
       key: i
     });
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    ref: historyEndRef
   }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RapidHistory);

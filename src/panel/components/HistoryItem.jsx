@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import HistoryItemChange from './HistoryItemChange';
 import './HistoryItem.css'
 
-const HistoryItem = ({historyItem, currIndex, id}) => {
+const HistoryItem = forwardRef(({historyItem, currIndex, id}, ref) => {
     return (
         <div
         className={currIndex === id ? "currIndex history-item" : "history-item"}
+        id='history-item-container'
+        ref={ref}
         key={id}>
-            {console.log("HistoryItem",id,historyItem)}
             {`${id}) ${historyItem.annotation}`}
-            <div id='history-detail-container' className='history-details'>
+
+            <div
+            id='history-item-change-container'
+            className='history-details'>
                 <p>Change Type: {(id === 0) ? historyItem.didChange : Object.keys(historyItem.didChange).toString()}</p>
                 {historyItem.changes ? Object.keys(historyItem.changes).map((change, i) => (
                     <>
@@ -18,9 +22,10 @@ const HistoryItem = ({historyItem, currIndex, id}) => {
                     </>
                 )): ""}
             </div>
+
         </div>
     )
-}
+})
 
 export default HistoryItem;
 
