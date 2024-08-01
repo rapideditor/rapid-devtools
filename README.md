@@ -23,3 +23,7 @@ While in a local deployment of Rapid, launch the devtools, you should see a new 
 Development
 ===
 When making changes to a clone of this repository, run `npm run quickstart` to compile changes in the dist folder.
+
+Issues
+===
+If you encounter any issues, please report them on our [issue tracker](https://github.com/cubeydice/rapid-devtools/issues).
