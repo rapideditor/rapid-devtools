@@ -1,15 +1,15 @@
-import React, { createRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import HistoryItem from './historyItem';
 
 const RapidHistory = ({history, currIndex}) => {
-    const historyEndRef = createRef(null);
-    const scrollToBottom = () => {
-        historyEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    const historyRef = useRef(null);
+    const scrollToCurrent = () => {
+        historyRef.current?.scrollIntoView({ behavior: "smooth" })
     }
 
     useEffect(() => {
-        scrollToBottom();
-    })
+        scrollToCurrent();
+    },[currIndex])
 
     return (
         <div id='edit-history-container'>
@@ -18,8 +18,8 @@ const RapidHistory = ({history, currIndex}) => {
                                                     historyItem={historyItem}
                                                     currIndex={currIndex}
                                                     id={i}
+                                                    ref={currIndex === i ? historyRef : null}
                                                     key={i} />)}
-            <div ref={historyEndRef}></div>
         </div>
     )
 }
