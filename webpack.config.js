@@ -10,7 +10,7 @@ module.exports = {
     devtools: './src/devtools/devtools.js',
     background:'./src/service-worker/background.js',
     panel: './src/panel/panel.jsx',
-    'content-script': './src/content/content-script.js',
+    'content-script': './src/content-script/content-script.js',
     injected: './src/injected/injected.js'
   },
   output:{
