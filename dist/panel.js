@@ -136,10 +136,11 @@ var HistoryItem = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)
     id = _ref.id;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: currIndex === id ? "currIndex history-item" : "history-item",
+    id: "history-item-container",
     ref: ref,
     key: id
   }, "".concat(id, ") ").concat(historyItem.annotation), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    id: "history-detail-container",
+    id: "history-item-change-container",
     className: "history-details"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Change Type: ", id === 0 ? historyItem.didChange : Object.keys(historyItem.didChange).toString()), historyItem.changes ? Object.keys(historyItem.changes).map(function (change, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, change[0] === "w" ? "Way ".concat(change, ":") : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_HistoryItemChange__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -199,7 +200,6 @@ __webpack_require__.r(__webpack_exports__);
 var RapidHistory = function RapidHistory(_ref) {
   var history = _ref.history,
     currIndex = _ref.currIndex;
-  // const historyEndRef = createRef(null);
   var historyRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var scrollToCurrent = function scrollToCurrent() {
     var _historyRef$current;

@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
-/*!***************************************!*\
-  !*** ./src/content/content-script.js ***!
-  \***************************************/
+/*!**********************************************!*\
+  !*** ./src/content-script/content-script.js ***!
+  \**********************************************/
 /*global chrome*/
 
 window.addEventListener('message', function(event) {
