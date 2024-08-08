@@ -22,7 +22,7 @@ While in a local deployment of Rapid, launch the devtools, you should see a new 
 
 Development
 ===
-When making changes to a clone of this repository, run `npm run quickstart` to compile changes in the dist folder.
+See the [Development Guide](https://github.com/rapideditor/rapid-devtools/wiki/Development-Guide) in the Wiki for details.
 
 Issues
 ===
