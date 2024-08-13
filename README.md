@@ -25,4 +25,4 @@ See the [Development Guide](https://github.com/rapideditor/rapid-devtools/wiki/D
 
 Issues
 ===
-If you encounter any issues, please report them on our [issue tracker](https://github.com/cubeydice/rapid-devtools/issues).
+If you encounter any issues, please report them on our [issue tracker](https://github.com/rapideditor/rapid-devtools/issues).
