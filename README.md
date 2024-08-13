@@ -1,7 +1,6 @@
 Rapid DevTools
 ===
 Rapid DevTools is a Chrome DevTools extension designed to enhance the development and debugging experience for [Meta's Rapid](https://github.com/facebook/Rapid), an AI-enhanced editor for OpenStreetMap.
-This extension provides a suite of tools and features tailored to streamline workflows, making it easier for developers to collaborate and improve Rapid.
 
 It currently features the following:
 * A sidebar showing the list of objects in Rapid's editor history. This would otherwise need to be logged in the console using `rapidContext.systems.editor.history`\
